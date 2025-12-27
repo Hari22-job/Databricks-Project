@@ -24,9 +24,6 @@ df_date.write.mode("overwrite").options(
   overwriteSchema="True"
 ).saveAsTable(target_table)
 
-# COMMAND ----------
-
-df_order.display()
 
 # COMMAND ----------
 
