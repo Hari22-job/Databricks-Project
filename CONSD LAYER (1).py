@@ -26,7 +26,7 @@ df_date.write.mode("overwrite").options(
 
 # COMMAND ----------
 
-df_orders.display()
+df_order.display()
 
 # COMMAND ----------
 
