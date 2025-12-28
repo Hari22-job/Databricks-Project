@@ -5,7 +5,9 @@ from pyspark.sql.functions import*
 file_path="/Volumes/bronze/superstore/raw_superstore/Sample - Superstore.csv"
 
 df=spark.read.format('csv').option("header","true").option("inferschema","true").load(file_path)
-df=df.withColumn("ingestion_time",current_timestamp())
+df=df.withColumn("ingestion_time",current_timestamp(),
+                "source_file",col("_metadata.file_name")
+                )
 cleaned_df = (
     df.withColumnRenamed('Customer ID', 'customer_id')
       .withColumnRenamed('Ship Mode', 'ship_mode')
