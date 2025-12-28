@@ -37,7 +37,7 @@ df_product.write.mode("overwrite").options(
 target_table="gold.consd_superstore.fact_sales"
 drop_cols=['order_year','shipped_year','ship_date','order_date']
 df_filter=df_filtered.select('order_id','product_id','customer_id','sales','discount','profit','quantity')
-joined_df=final_df.join(df_date,"order_id","inner")
+joined_df=joined_df.join(df_date,"order_id","inner")
 delivery_date_df=joined_df.withColumn('delivery_date',datediff(col('ship_date'),col('order_date')))
 joined_df=delivery_date_df.drop(*drop_cols)
 df_final=joined_df.groupBy('order_id','product_id','customer_id').agg(sum('sales').alias('sales'),sum('discount').alias('discount'),sum('profit').alias('profit'),sum('quantity').alias('quantity'),first("delivery_date").alias("delivery_date"))
