@@ -26,10 +26,6 @@ df_date.write.mode("overwrite").options(
 
 # COMMAND ----------
 
-df_orders.display()
-
-# COMMAND ----------
-
 target_table="gold.consd_superstore.dim_product"
 df_product.write.mode("overwrite").options(
   overwriteSchema="True"
